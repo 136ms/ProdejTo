@@ -1,0 +1,41 @@
+.card-deck {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.card-border {
+    border: 1px solid rgb(107, 107, 107);
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #212529 !important;
+    background-clip: border-box;
+    border: 1px solid rgb(107, 107, 107) !important;
+    border-radius: 0.25rem;
+}
+
+.card h5, p {
+    color: white !important;
+}
+
+.link {
+    text-decoration: none;
+    text-underline: none;
+}
+
+.card-text {
+    margin-bottom: 5px !important;
+}
+
+.modal-header {
+    border-bottom: 1px solid #0d6efd !important;
+}
+
+.modal-footer {
+    border-top: 1px solid #0d6efd !important;
+}

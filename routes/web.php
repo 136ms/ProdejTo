@@ -13,10 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
+ * Default routes
+ */
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('index');
+})->name('index');
 
+Route::get('/items', function () {
+    return view('items');
+})->name('items');
+
+Route::get('/item', function () {
+    return view('item');
+})->name('item');
+
+/*
+ * Dashboard routes
+ */
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -26,3 +40,11 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/user/add/item', function () {
+    return view('');
+})->name('userAddItem');
+
+Route::get('/user/show/items', function () {
+    return view('');
+})->name('userShowItems');

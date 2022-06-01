@@ -42,9 +42,9 @@ Route::middleware([
 });
 
 Route::get('/user/add/item', function () {
-    return view('');
+    return view('add-advert');
 })->name('userAddItem');
 
 Route::get('/user/show/items', function () {
-    return view('');
+    return view('show-advert');
 })->name('userShowItems');

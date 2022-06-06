@@ -18,12 +18,12 @@
                                    aria-describedby="nameHelp">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputSurname1" class="form-label">Surname:</label>
+                            <label for="exampleInputSurname1" class="form-label">Surname: </label>
                             <input type="text" class="form-control" id="exampleInputSurname1" placeholder="Your Surname:"
                                    aria-describedby="surnameHelp">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">E-Mail:</label>
+                            <label for="exampleInputEmail1" class="form-label">E-Mail: {{ $name }}</label>
                             <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Your E-Mail:"
                                    aria-describedby="emailHelp">
                         </div>
@@ -41,6 +41,29 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="container">
+        <h3>View all image</h3><hr>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Image id</th>
+                <th scope="col">Image</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($imageData as $data)
+                <tr>
+                    <td>{{$data->id}}</td>
+                    <td>
+                        <img src="{{ url('public/Image/'.$data->image) }}"
+                             style="height: 100px; width: 150px;">
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
 
     <section>

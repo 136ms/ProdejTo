@@ -25,7 +25,7 @@ Route::get('/items', function () {
 })->name('items');
 
 Route::get('/item', function () {
-    return view('item');
+    return view('item', ['name' => 'TESTRTTTTTT']);
 })->name('item');
 
 /*
@@ -48,3 +48,14 @@ Route::get('/user/add/item', function () {
 Route::get('/user/show/items', function () {
     return view('show-advert');
 })->name('userShowItems');
+
+//For adding an image
+Route::get('/add-image',[ImageUploadController::class,'addImage'])->name('images.add');
+
+//For storing an image
+Route::post('/store-image',[ImageUploadController::class,'storeImage'])
+    ->name('images.store');
+
+//For showing an image
+Route::get('/view-image',[ImageUploadController::class,'viewImage'])->name('images.view');
+

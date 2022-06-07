@@ -23,7 +23,7 @@
                                    aria-describedby="surnameHelp">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">E-Mail: {{ $name }}</label>
+                            <label for="exampleInputEmail1" class="form-label">E-Mail: </label>
                             <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Your E-Mail:"
                                    aria-describedby="emailHelp">
                         </div>

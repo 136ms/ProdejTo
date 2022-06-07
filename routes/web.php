@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ImageUploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,8 +54,8 @@ Route::get('/user/show/items', function () {
 Route::get('/add-image',[ImageUploadController::class,'addImage'])->name('images.add');
 
 //For storing an image
-Route::post('/store-image',[ImageUploadController::class,'storeImage'])
-    ->name('images.store');
+Route::post('/store-advert',[ImageUploadController::class,'storeAdvert'])
+    ->name('advert.store');
 
 //For showing an image
 Route::get('/view-image',[ImageUploadController::class,'viewImage'])->name('images.view');

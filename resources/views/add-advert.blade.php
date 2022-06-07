@@ -1,6 +1,7 @@
 <x-app-layout>
     <div class="p-8">
-        <form class="text-sm text-left text-gray-500 dark:text-gray-400">
+        <form class="text-sm text-left text-gray-500 dark:text-gray-400" method="post" action="{{ route('advert.store') }}">
+            @csrf
             <div class="grid gap-6 grid-cols-2">
                 <div>
                     <label for="name"
@@ -55,31 +56,13 @@
                     </label>
                 </div>
             </div>
-                </form>
-            </div>
-        </form>
-
-    //add_image.blade.php
-    <div class="container">
-        <form method="post" action="{{ route('images.store') }}"
-              enctype="multipart/form-data">
-            @csrf
-            <div class="image">
-                <label><h4>Add image</h4></label>
-                <input type="file" class="form-control" required name="image">
-            </div>
-
-            <div class="post_button">
-                <button type="submit" class="btn btn-success">Add</button>
+            <div class="flex justify-center">
+                <x-jet-button   type="submit" wire:click="$toggle('confirmingUserDeletion')" wire:loading.attr="disabled">
+                    Publish
+                </x-jet-button>
             </div>
         </form>
     </div>
 
-    </div>
-    <div class="flex justify-center">
-        <x-jet-button wire:click="$toggle('confirmingUserDeletion')" wire:loading.attr="disabled">
-            Publish
-        </x-jet-button>
-    </div>
 </x-app-layout>
 

@@ -16,20 +16,25 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                    Apple MacBook Pro 17"
-                </th>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                    21/1/2003
-                </th>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                    29000 Kč
-                </th>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-900 whitespace-nowrap hover:underline">Edit</a>
-                </td>
-            </tr>
+            @foreach($advertsData as $data)
+
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                    </th>
+                    {{$data['itemName']}}
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                        {{substr($data['updated_at'],0,10)}}
+                    </th>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                        {{$data['price']}}
+                    </th>
+                    <td class="px-6 py-4">
+                        <a href="#" class="font-medium text-blue-900 whitespace-nowrap hover:underline">Edit</a>
+                    </td>
+                </tr>
+
+                @endforeach
+
             </tbody>
         </table>
     </div>

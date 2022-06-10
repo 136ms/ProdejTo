@@ -13,18 +13,15 @@ class adverts extends Model
     public function storeAdvert(Request $request){
         $data= new adverts();
 
-        if($request->file('file')){
-            $file= $request->file('image_name');
-            $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('/Images/'), $filename);
-            $data['image']= $filename;
-            $data['UserID']= 1;
-            $data['CategoryID']= 1;
-            $data['Location']= "LOKACE";
-            $data['Price']= 69;
-            $data['Description']= "POPIS";
+        $file= $request->file('image');
+        $filename= date('YmdHi').$file->getClientOriginalName();
+        $file-> move(public_path('/Images/'), $filename);
+        $data['itemName'] = $request->input('itemName');
+        $data['location'] = $request->input('location');
+        $data['categoryID'] = $request->input('category');
+        $data['price'] = $request->input('price');
+        $data['description'] = $request->input('description');
 
-        }
         $data->save();
         return redirect()->route('images.view');
 

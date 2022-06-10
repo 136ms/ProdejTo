@@ -46,9 +46,7 @@ Route::get('/user/add/item', function () {
     return view('add-advert');
 })->name('userAddItem');
 
-Route::get('/user/show/items', function () {
-    return view('show-advert');
-})->name('userShowItems');
+Route::get('/user/show/items', [ImageUploadController::class,'showUserAdverts'])->name('userShowItems');
 
 //For adding an image
 Route::get('/add-image',[ImageUploadController::class,'addImage'])->name('images.add');

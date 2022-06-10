@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="p-8">
-        <form class="text-sm text-left text-gray-500 dark:text-gray-400" method="post" action="{{ route('advert.store') }}">
+        <form class="text-sm text-left text-gray-500 dark:text-gray-400" method="post" enctype="multipart/form-data" action="{{ route('advert.store') }}">
             @csrf
             <div class="grid gap-6 grid-cols-2">
                 <div>
@@ -8,31 +8,31 @@
                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Name</label>
                     <input type="text" id="name"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="Item name" required="">
+                           placeholder="Item name" name="itemName" required>
                 </div>
                 <div>
                     <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Location</label>
                     <input type="text" id="location"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="Location" required="">
+                           placeholder="Location" name="location" required>
                 </div>
                 <div>
-                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Choose
+                    <label for="countries"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Choose
                         category</label>
-                    <select id="countries"
+                    <select id="countries" name="category" required
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600  dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option selected>Choose a category</option>
-                        <option value="US">Cars</option>
-                        <option value="CA">Electronics</option>
-                        <option value="FR">Housing</option>
-                        <option value="DE">Clothes</option>
+                        <option value="1">Cars</option>
+                        <option value="2">Electronics</option>
+                        <option value="3">Housing</option>
+                        <option value="4">Clothes</option>
                     </select>
                 </div>
                 <div>
                     <label for="price" class="block mb-2 font-medium text-gray-900 dark:text-gray-300">Price</label>
-                    <input type="text" id="price"
+                    <input type="number" id="price"
                            class="bg-gray-50 border border-gray-300 text-sm text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="Price" required="">
+                           placeholder="Price" name="price" required>
                 </div>
             </div>
             <div>
@@ -40,7 +40,7 @@
                        class="block mt-4 text-sm font-medium text-gray-900 dark:text-gray-300">Description</label>
                 <textarea id="description" rows="2"
                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          placeholder="Description"></textarea>
+                          placeholder="Description" name="description" required></textarea>
             </div>
             <div>
                 <label for="images"
@@ -52,7 +52,7 @@
                             <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
                             <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                         </div>
-                        <input id="dropzone-file" type="file" class="hidden" />
+                        <input id="dropzone-file" name="image" type="file" class="hidden" required/>
                     </label>
                 </div>
             </div>

@@ -8,8 +8,8 @@
 
     <div class="container p-4">
         <form class="d-flex mx-auto w-50">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-primary" type="submit">Search</button>
+            <input class="form-control me-2" type="search" placeholder="Vyhledat" aria-label="Search">
+            <button class="btn btn-primary" type="submit">Vyhledat</button>
         </form>
     </div>
 

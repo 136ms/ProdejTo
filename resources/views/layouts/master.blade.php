@@ -24,24 +24,24 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link" href="/">Domů</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/items">Items</a>
+                    <a class="nav-link" href="/items">Inzeráty</a>
                 </li>
                 @if (Route::has('login'))
                     <li class="nav-item">
                         @auth
-                            <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
+                            <a href="{{ url('/dashboard') }}" class="nav-link">Uživatelský panel</a>
                     </li>
                 @else
                     <li>
-                        <a href="{{ route('login') }}" class="nav-link">Log in</a>
+                        <a href="{{ route('login') }}" class="nav-link">Přihlásit se</a>
                     </li>
                     @if (Route::has('register'))
                         <li>
                             <a href="{{ route('register') }}"
-                               class="nav-link">Register</a>
+                               class="nav-link">Registrovat se</a>
                         </li>
                     @endif
                 @endauth

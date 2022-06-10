@@ -13,12 +13,12 @@
                 <div class="modal-body text-white">
                     <form>
                         <div class="mb-3">
-                            <label for="exampleInputName1" class="form-label">Name:</label>
+                            <label for="exampleInputName1" class="form-label">Křestní jméno:</label>
                             <input type="text" class="form-control" id="exampleInputName1" placeholder="Your Name:"
                                    aria-describedby="nameHelp">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputSurname1" class="form-label">Surname: </label>
+                            <label for="exampleInputSurname1" class="form-label">Příjmení: </label>
                             <input type="text" class="form-control" id="exampleInputSurname1" placeholder="Your Surname:"
                                    aria-describedby="surnameHelp">
                         </div>
@@ -28,7 +28,7 @@
                                    aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputMessage1" class="form-label">Message:</label>
+                            <label for="exampleInputMessage1" class="form-label">Zpráva:</label>
                             <textarea type="text" class="form-control" id="exampleInputMessage1" placeholder="Your Message:"
                                       aria-describedby="messageHelp"></textarea>
                         </div>
@@ -44,12 +44,12 @@
     </div>
 
     <div class="container">
-        <h3>View all image</h3><hr>
+        <h3>Zobrazit všechny fotografie</h3><hr>
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">Image id</th>
-                <th scope="col">Image</th>
+                <th scope="col">ID fotografie</th>
+                <th scope="col">Fotografie</th>
             </tr>
             </thead>
             <tbody>
@@ -84,12 +84,12 @@
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                             data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
+                        <span class="visually-hidden">Předchozí</span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
                             data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
+                        <span class="visually-hidden">Další</span>
                     </button>
                 </div>
                 <div class="card-footer text-center bg-primary">
@@ -98,7 +98,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Gucci Bag</h5>
                     <p class="card-text">This is some dope-ass Gucci Bag for sale.</p>
-                    <p class="card-text text-primary">Lokalita: <span class="text-muted">USA</span></p>
+                    <p class="card-text text-primary">Poloha: <span class="text-muted">USA</span></p>
                     <p class="card-text text-primary">Kategorie: <span class="text-muted">Oblečení</span></p>
                     <p class="card-text text-primary">Datum: <span class="text-muted">21/1/2003</span></p>
                     <div class="text-center">

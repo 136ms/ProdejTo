@@ -17,9 +17,9 @@ use App\Http\Controllers\ImageUploadController;
 /*
  * Default routes
  */
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+Route::get('/', [ImageUploadController::class,'viewIndex'])->name('index');
+
+Route::get('/page/{id}', [ImageUploadController::class,'viewIndexPage'])->name('indexPage');
 
 Route::get('/items', function () {
     return view('items');
@@ -42,19 +42,25 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/user/add/item', function () {
-    return view('add-advert');
-})->name('userAddItem');
+Route::get('/user/add/item', [ImageUploadController::class,'addAdvert'])->name('userAddItem');
 
 Route::get('/user/show/items', [ImageUploadController::class,'showUserAdverts'])->name('userShowItems');
 
 //For adding an image
 Route::get('/add-image',[ImageUploadController::class,'addImage'])->name('images.add');
 
-//For storing an image
+//For storing an advert
 Route::post('/store-advert',[ImageUploadController::class,'storeAdvert'])
     ->name('advert.store');
+
+//For showing an search result
+Route::post('/search-advert',[ImageUploadController::class,'viewIndexSearch'])
+    ->name('advert.search');
 
 //For showing an image
 Route::get('/view-image',[ImageUploadController::class,'viewImage'])->name('images.view');
 
+Route::controller(ImageUploadController::class)->group(function(){
+    Route::get('image-upload', 'index');
+    Route::post('image-upload', 'store')->name('image.store');
+});

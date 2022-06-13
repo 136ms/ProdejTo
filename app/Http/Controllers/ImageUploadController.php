@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\adverts;
+use App\Models\Categories;
 use App\Models\PostImage;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\String_;
@@ -17,16 +18,8 @@ class ImageUploadController extends Controller
     public function storeAdvert(Request $request){
         $advertData= new adverts();
 
-        if(!$request->hasFile('image')) {
-            return response()->json(['upload_file_not_found'], 400);
-        }
-        $file = $request->file('image');
-        if(!$file->isValid()) {
-            return response()->json(['invalid_file_upload'], 400);
-        }
 
-
-       // $advertData['ItemName'] = $request->input('ItemName');
+        $advertData['itemName'] = $request->input('itemName');
         $advertData['location'] = $request->input('location');
         $advertData['categoryID'] = $request->input('category');
         $advertData['price'] = $request->input('price');
@@ -36,15 +29,27 @@ class ImageUploadController extends Controller
         $advertData->save();
         $imageData = new PostImage();
 
-        $file= $request->file('image');
-        $filename= date('YmdHi').$file->getClientOriginalName();
-        $file-> move(public_path('/Images/'), $filename);
-        $imageData['image'] = $filename;
-        $imageData['advertID']  = $advertData->id;
 
+        if($request->hasfile('images'))
+        {
+            foreach($request->file('images') as $key => $file)
+            {
+                $filename= date('YmdHi').$file->getClientOriginalName();
+                $file-> move(public_path('/Images/'), $filename);
+                $imageData['image'] = $filename;
+                $imageData['advertID']  = $advertData->id;
+            }
+            $imageData->save();
+        }
 
-        return redirect()->route('userShowItems');
+        $added = true;
+        $advertsData = adverts::all()->where('userID', auth()->user()->id)->toArray();
+        return view('show-advert', compact('advertsData','added'));
 
+    }
+    public function addAdvert(){
+        $categories = Categories::all();
+        return view('add-advert', compact('categories'));
     }
 
     //View post
@@ -55,8 +60,26 @@ class ImageUploadController extends Controller
 
     public function showUserAdverts(){
         $advertsData = adverts::all()->where('userID', auth()->user()->id)->toArray();
-        //echo $advertsData;
         return view('show-advert', compact('advertsData'));
-        //dd(compact('advertsData'));
     }
+    public function viewIndex(){
+
+        $advertsData = adverts::query()->limit(15)->get();
+        $id = 1;
+        return view('index', compact('advertsData','id'));
+    }
+    public function viewIndexPage($pos){
+        $advertsData = adverts::query()->where('id', '>=', (int)$pos*20)->limit(20)->get();
+        $id = (int)$pos + 1;
+        return view('index', compact('advertsData','id'));
+    }
+
+    public function viewIndexSearch(Request $request){
+        $advertsData = adverts::query()->where('itemName','LIKE','%'.$request->input('search').'%')->orWhere('description','LIKE','%'.$request->input('search').'%')->where('id', '>=', (int)$request->input('id')*20)->limit(20)->get();
+        $id = 1;
+        return view('index', compact('advertsData','id'));
+    }
+
+
+
 }

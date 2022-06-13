@@ -5,7 +5,7 @@
     <section>
         <div class="container p-4">
             <form class="d-flex mx-auto w-50">
-                <input class="form-control me-2" type="search" placeholder="Vyhledat" aria-label="Search">
+                <input  class="form-control me-2" type="search" placeholder="Vyhledat" aria-label="Search">
                 <button class="btn btn-primary" type="submit">Vyhledat</button>
             </form>
         </div>
@@ -144,17 +144,5 @@
         </div>
     </section>
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center bg-dark">
-            <li class="page-item disabled bg-dark">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Předchozí</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Další</a>
-            </li>
-        </ul>
-    </nav>
+
 @endsection

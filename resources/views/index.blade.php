@@ -7,9 +7,10 @@
     </div>
 
     <div class="container p-4">
-        <form class="d-flex mx-auto w-50">
-            <input class="form-control me-2" type="search" placeholder="Vyhledat" aria-label="Search">
-            <button class="btn btn-primary" type="submit">Vyhledat</button>
+        <form class="d-flex mx-auto w-50" method="post" action="{{ route('advert.search') }}">>
+            @csrf
+            <input name="search" class="form-control me-2" type="search" placeholder="Vyhledat" aria-label="Search">
+            <button  value="{{$id}}" name="id" class="btn btn-primary" type="submit">Vyhledat</button>
         </form>
     </div>
 
@@ -42,90 +43,38 @@
         <div class="container">
             <h2 class="text-white text-center mx-auto p-4">Inzeráty</h2>
         </div>
+
         <div class="container">
             <div class="card-deck">
                 <div class="row mx-auto">
+                    <?php $i = 0; ?>
+                @foreach($advertsData as $data)
                     <div class="col">
                         <a href="/item" target="_blank" class="link">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-text text-white text-center">Gucci Bag</h4>
+                                    <h4 class="card-text text-white text-center">{{$data['itemName']}}</h4>
                                 </div>
                                 <img class="card-img-top" src="{{URL('images/bag.png')}}" alt="Card image cap">
                                 <div class="card-footer text-center bg-primary">
-                                    <h4 class="card-text text-white text-center"><b>10800 Kč</b></h4>
+                                    <h4 class="card-text text-white text-center"><b>{{$data['price']}} Kč</b></h4>
                                 </div>
                             </div>
                         </a>
                     </div>
-                    <div class="col">
-                        <a href="/item" target="_blank" class="link">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-text text-white text-center">Gucci Bag</h4>
-                                </div>
-                                <img class="card-img-top" src="{{URL('images/bag.png')}}" alt="Card image cap">
-                                <div class="card-footer text-center bg-primary">
-                                    <h4 class="card-text text-white text-center"><b>10800 Kč</b></h4>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="/item" target="_blank" class="link">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-text text-white text-center">Gucci Bag</h4>
-                                </div>
-                                <img class="card-img-top" src="{{URL('images/bag.png')}}" alt="Card image cap">
-                                <div class="card-footer text-center bg-primary">
-                                    <h4 class="card-text text-white text-center"><b>10800 Kč</b></h4>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="/item" target="_blank" class="link">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-text text-white text-center">Gucci Bag</h4>
-                                </div>
-                                <img class="card-img-top" src="{{URL('images/bag.png')}}" alt="Card image cap">
-                                <div class="card-footer text-center bg-primary">
-                                    <h4 class="card-text text-white text-center"><b>10800 Kč</b></h4>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="/item" target="_blank" class="link">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-text text-white text-center">Gucci Bag</h4>
-                                </div>
-                                <img class="card-img-top" src="{{URL('images/bag.png')}}" alt="Card image cap">
-                                <div class="card-footer text-center bg-primary">
-                                    <h4 class="card-text text-white text-center"><b>10800 Kč</b></h4>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="/item" target="_blank" class="link">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-text text-white text-center">Gucci Bag</h4>
-                                </div>
-                                <img class="card-img-top" src="{{URL('images/bag.png')}}" alt="Card image cap">
-                                <div class="card-footer text-center bg-primary">
-                                    <h4 class="card-text text-white text-center"><b>10800 Kč</b></h4>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                    <?php $i++; ?>
+                    @if($i == 5)
+                        <div class="w-100" style="margin-top: 20px"></div>
+                        <?php $i = 0; ?>
+                    @endif
+                @endforeach
                 </div>
             </div>
         </div>
     </section>
+    <div class="d-flex justify-content-center" style="margin:15px">
+        <a href="/page/{{$id}}" class="btn btn-primary" >Další strana</a>
+    </div>
+
 @endsection
 

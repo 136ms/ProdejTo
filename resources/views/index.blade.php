@@ -44,12 +44,11 @@
             <h2 class="text-white text-center mx-auto p-4">Inzeráty</h2>
         </div>
 
-        <div class="container">
+        <div class="container-fluid">
             <div class="card-deck">
                 <div class="row mx-auto">
-                    <?php $i = 0; ?>
                 @foreach($advertsData as $data)
-                    <div class="col">
+                    <div class="col-lg-2 col-md-4 col-sm-4 pb-4">
                         <a href="/item" target="_blank" class="link">
                             <div class="card">
                                 <div class="card-body">
@@ -62,11 +61,6 @@
                             </div>
                         </a>
                     </div>
-                    <?php $i++; ?>
-                    @if($i == 5)
-                        <div class="w-100" style="margin-top: 20px"></div>
-                        <?php $i = 0; ?>
-                    @endif
                 @endforeach
                 </div>
             </div>

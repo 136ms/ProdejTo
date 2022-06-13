@@ -6,7 +6,8 @@
             <div class="grid gap-6 grid-cols-2">
                 <div>
                     <label for="name"
-                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Název produktu</label>
+                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Název
+                        produktu</label>
                     <input type="text" id="name"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="Název produktu" name="itemName" required>
@@ -19,12 +20,13 @@
                            placeholder="Poloha" name="location" required>
                 </div>
                 <div>
-                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Vybrat kategorii</label>
+                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Vybrat
+                        kategorii</label>
                     <select id="countries" name="category" required
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600  dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="" disabled selected>Vybrat kategorii</option>
                         @foreach($categories as $category)
-                        <option label="{{$category->category}}" value="{{$category->id}}"></option>
+                            <option label="{{$category->category}}" value="{{$category->id}}"></option>
                         @endforeach
 
                     </select>
@@ -67,14 +69,8 @@
             <div class="block mt-4 ">
                 <div class="card-deck">
                     <label
-                           class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border border-gray-300">
-                        <div class="flex flex-col justify-center items-center pt-5 pb-6">
-                            <div class="col-md-12">
-                                <div class="mt-1 text-center">
-                                    <div class="images-preview-div col"> </div>
-                                </div>
-                            </div>
-                        </div>
+                        class="flex h-64 bg-gray-50 rounded-lg border border-gray-300">
+                        <div class="images-preview-div" style="display: contents"></div>
                     </label>
                 </div>
             </div>
@@ -92,28 +88,27 @@
     <div>
 
         <style>
-            .images-preview-div img
-            {
+            .images-preview-div img {
                 padding: 10px;
                 max-width: 100px;
             }
         </style>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script >
-            $(function() {
-                var previewImages = function(input, imgPreviewPlaceholder) {
+        <script>
+            $(function () {
+                var previewImages = function (input, imgPreviewPlaceholder) {
                     if (input.files) {
                         var filesAmount = input.files.length;
                         for (i = 0; i < filesAmount; i++) {
                             var reader = new FileReader();
-                            reader.onload = function(event) {
+                            reader.onload = function (event) {
                                 $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
                             }
                             reader.readAsDataURL(input.files[i]);
                         }
                     }
                 };
-                $('#dropzone-file').on('change', function() {
+                $('#dropzone-file').on('change', function () {
                     previewImages(this, 'div.images-preview-div');
                 });
             });
@@ -127,8 +122,7 @@
             </div>
         @endif
         <style>
-            .images-preview-div img
-            {
+            .images-preview-div img {
                 padding: 10px;
                 max-width: 100px;
             }
@@ -138,12 +132,13 @@
                 <h2>Laravel 8 Upload Multiple Image With Preview - Tutsmake.com</h2>
             </div>
             <div class="card-body">
-                <form name="images-upload-form" method="POST"  action="{{ url('upload-multiple-image-preview') }}" accept-charset="utf-8" enctype="multipart/form-data">
+                <form name="images-upload-form" method="POST" action="{{ url('upload-multiple-image-preview') }}"
+                      accept-charset="utf-8" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="file" name="images[]" id="images" placeholder="Choose images" multiple >
+                                <input type="file" name="images[]" id="images" placeholder="Choose images" multiple>
                             </div>
                             @error('images')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -151,7 +146,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="mt-1 text-center">
-                                <div class="images-preview-div"> </div>
+                                <div class="images-preview-div"></div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -162,22 +157,22 @@
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script >
-            $(function() {
+        <script>
+            $(function () {
 // Multiple images preview with JavaScript
-                var previewImages = function(input, imgPreviewPlaceholder) {
+                var previewImages = function (input, imgPreviewPlaceholder) {
                     if (input.files) {
                         var filesAmount = input.files.length;
                         for (i = 0; i < filesAmount; i++) {
                             var reader = new FileReader();
-                            reader.onload = function(event) {
+                            reader.onload = function (event) {
                                 $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
                             }
                             reader.readAsDataURL(input.files[i]);
                         }
                     }
                 };
-                $('#images').on('change', function() {
+                $('#images').on('change', function () {
                     previewImages(this, 'div.images-preview-div');
                 });
             });

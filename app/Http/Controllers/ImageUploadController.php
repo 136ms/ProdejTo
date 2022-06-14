@@ -12,6 +12,15 @@ use PhpParser\Node\Stmt\Echo_;
 use Illuminate\Support\Facades\DB;
 
 
+function addImageToObj(\Illuminate\Database\Eloquent\Collection|array $advertsData)
+{
+    foreach ($advertsData as $data){
+        $img = PostImage::query()->where('advertID', '=', $data['id'])->first();
+        $data['image'] = $img['image'];
+    }
+    return $advertsData;
+}
+
 class ImageUploadController extends Controller
 {
     //Add image
@@ -96,14 +105,13 @@ class ImageUploadController extends Controller
             ->orWhere('description','LIKE','%'.$request
                     ->input('search').'%')->where('id', '>=', (int)$request
                     ->input('id')*20)->limit(20)->get();
+        $advertsData = addImageToObj($advertsData);
         $id = 1;
         return view('index', compact('advertsData','id'));
     }
-    public function addImageToObj($advertsData){
-        foreach ($advertsData as $data){
-            $img = PostImage::query()->where('advertID', '=', $data['id'])->first();
-            $data['image'] = $img['image'];
-        }
-        return $advertsData;
+
+    public function editAdvert(){
+
     }
+
 }

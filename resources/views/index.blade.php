@@ -49,12 +49,12 @@
                 <div class="row mx-auto">
                 @foreach($advertsData as $data)
                     <div class="col-lg-2 col-md-4 col-sm-4 pb-4">
-                        <a href="/item" target="_blank" class="link">
+                        <a href="/item/{{$data['id']}}" target="_blank" class="link">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-text text-white text-center">{{$data['itemName']}}</h4>
                                 </div>
-                                <img class="card-img-top" src="{{URL('images/bag.png')}}" alt="Card image cap">
+                                <img class="card-img-top" src="{{ URL::asset("images/".$data->image)}}" alt="Card image cap">
                                 <div class="card-footer text-center bg-primary">
                                     <h4 class="card-text text-white text-center"><b>{{$data['price']}} Kč</b></h4>
                                 </div>

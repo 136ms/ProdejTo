@@ -21,6 +21,8 @@ Route::get('/', [ImageUploadController::class,'viewIndex'])->name('index');
 
 Route::get('/page/{id}', [ImageUploadController::class,'viewIndexPage'])->name('indexPage');
 
+Route::get('/item/{id}', [ImageUploadController::class,'viewItem'])->name('ItemPage');
+
 Route::get('/items', function () {
     return view('items');
 })->name('items');

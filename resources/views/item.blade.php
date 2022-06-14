@@ -14,22 +14,22 @@
                     <form>
                         <div class="mb-3">
                             <label for="exampleInputName1" class="form-label">Křestní jméno:</label>
-                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Your Name:"
+                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Vaše křestní jméno:"
                                    aria-describedby="nameHelp">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputSurname1" class="form-label">Příjmení: </label>
-                            <input type="text" class="form-control" id="exampleInputSurname1" placeholder="Your Surname:"
+                            <input type="text" class="form-control" id="exampleInputSurname1" placeholder="Vaše příjmení:"
                                    aria-describedby="surnameHelp">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">E-Mail: </label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Your E-Mail:"
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Váš E-mail:"
                                    aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputMessage1" class="form-label">Zpráva:</label>
-                            <textarea type="text" class="form-control" id="exampleInputMessage1" placeholder="Your Message:"
+                            <textarea type="text" class="form-control" id="exampleInputMessage1" placeholder="Vaše zpráva:"
                                       aria-describedby="messageHelp"></textarea>
                         </div>
                     </form>
@@ -53,15 +53,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($imageData as $data)
-                <tr>
-                    <td>{{$data->id}}</td>
-                    <td>
-                        <img src="{{ url('public/Image/'.$data->image) }}"
-                             style="height: 100px; width: 150px;">
-                    </td>
-                </tr>
-            @endforeach
+
             </tbody>
         </table>
     </div>
@@ -71,15 +63,19 @@
             <div class="card mb-3 mt-3">
                 <div id="carouselExampleControls" class="carousel slide" data-bs-interval="false" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item card-img-top active">
-                            <img src="images/bag.png" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item card-img-top">
-                            <img src="images/bag.png" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item card-img-top">
-                            <img src="images/bag.png" class="d-block w-100" alt="...">
-                        </div>
+                        <?php $firstDone = false; ?>
+                        @foreach($imageData as $data)
+                            @if($firstDone == false)
+                                <?php $firstDone = true ?>
+                            <div class="carousel-item card-img-top active">
+                                <img src="{{ URL::asset("images/".$data->image)}}" class="d-block w-100" alt="...">
+                            </div>
+                                @else
+                                    <div class="carousel-item card-img-top">
+                                        <img src="{{ URL::asset("images/".$data->image)}}" class="d-block w-100" alt="...">
+                                    </div>
+                                @endif
+                        @endforeach
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                             data-bs-slide="prev">
@@ -93,14 +89,14 @@
                     </button>
                 </div>
                 <div class="card-footer text-center bg-primary">
-                    <h4 class="card-text text-white"><b>10800 Kč</b></h4>
+                    <h4 class="card-text text-white"><b>{{$advertData->price}} Kč</b></h4>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Gucci Bag</h5>
-                    <p class="card-text">This is some dope-ass Gucci Bag for sale.</p>
-                    <p class="card-text text-primary">Poloha: <span class="text-muted">USA</span></p>
-                    <p class="card-text text-primary">Kategorie: <span class="text-muted">Oblečení</span></p>
-                    <p class="card-text text-primary">Datum: <span class="text-muted">21/1/2003</span></p>
+                    <h5 class="card-title">{{$advertData['itemName']}}</h5>
+                    <p class="card-text">{{$advertData['description']}}</p>
+                    <p class="card-text text-primary">Poloha: <span class="text-muted">{{$advertData['location']}}</span></p>
+                    <p class="card-text text-primary">Kategorie: <span class="text-muted">{{$advertData['categoryID']}}</span></p>
+                    <p class="card-text text-primary">Datum: <span class="text-muted">{{substr($advertData['updated_at'],0,10)}}</span></p>
                     <div class="text-center">
                         <button class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Kontaktovat

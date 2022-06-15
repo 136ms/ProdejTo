@@ -43,20 +43,6 @@
         </div>
     </div>
 
-    <div class="container">
-        <h3>Zobrazit všechny fotografie</h3><hr>
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">ID fotografie</th>
-                <th scope="col">Fotografie</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
-    </div>
 
     <section>
         <div class="container mx-auto w-50">

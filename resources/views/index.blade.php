@@ -19,24 +19,19 @@
     </div>
     <section>
         <div class="container text-center mx-auto">
-            <a href="/items" target="_blank" class="link">
-                <button class="btn btn-lg btn-outline-primary m-1">Elektronika</button>
-            </a>
-            <a href="/items" target="_blank" class="link">
-                <button class="btn btn-lg btn-outline-primary m-1">Oblečení</button>
-            </a>
-            <a href="/items" target="_blank" class="link">
-                <button class="btn btn-lg btn-outline-primary m-1">Auta</button>
-            </a>
-            <a href="/items" target="_blank" class="link">
-                <button class="btn btn-lg btn-outline-primary m-1">Zvířata</button>
-            </a>
-            <a href="/items" target="_blank" class="link">
-                <button class="btn btn-lg btn-outline-primary m-1">Domácnost</button>
-            </a>
-            <a href="/items" target="_blank" class="link">
-                <button class="btn btn-lg btn-outline-primary m-1">Reality</button>
-            </a>
+            @foreach($categories as $category)
+                @isset($categoryID)
+                    @if($categoryID == $category['id'])
+                        <a href="/category/{{$category['id']}}" target="" class="link">
+                            <button class="btn btn-lg btn-primary m-1">{{$category['category']}}</button>
+                        </a>
+                    @else
+                        <a href="/category/{{$category['id']}}" target="" class="link">
+                            <button class="btn btn-lg btn-outline-primary m-1">{{$category['category']}}</button>
+                        </a>
+                    @endif
+                @endisset
+            @endforeach
         </div>
     </section>
     <section>

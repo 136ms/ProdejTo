@@ -36,7 +36,7 @@
                         {{$data['price']}} Kč
                     </th>
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-900 whitespace-nowrap hover:underline">Upravit</a>
+                        <a href="/edit/{{$data['id']}}" class="font-medium text-blue-900 whitespace-nowrap hover:underline">Upravit</a>
                     </td>
                 </tr>
 

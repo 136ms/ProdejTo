@@ -61,6 +61,25 @@ class ImageUploadController extends Controller
         return view('show-advert', compact('advertsData','added'));
 
     }
+
+    public function updateAdvert(Request $request){
+        $advertData= new adverts();
+
+        $advertData->where('id',$request->input('id'))->update(
+            ['itemName' => $request->input('itemName'),
+                'location' => $request->input('location'),
+                'categoryID' => $request->input('category'),
+                'price' => $request->input('price'),
+                'description' => $request->input('description'),
+            ]);
+
+        $added = true;
+        $advertsData = adverts::all()->where('userID', auth()->user()->id)->toArray();
+        return view('show-advert', compact('advertsData','added'));
+
+    }
+
+
     public function addAdvert(){
         $categories = Categories::all();
         return view('add-advert', compact('categories'));
@@ -81,8 +100,9 @@ class ImageUploadController extends Controller
         $advertsData = adverts::query()->limit(15)->get();
         $advertsData = addImageToObj($advertsData);
         $id = 1;
+        $categories = Categories::all()->toArray();
 
-        return view('index', compact('advertsData','id'));
+        return view('index', compact('advertsData','id','categories'));
     }
     public function viewIndexPage($pos){
         $advertsData = adverts::query()->where('id', '>=', (int)$pos*20)->limit(20)->get();
@@ -91,12 +111,19 @@ class ImageUploadController extends Controller
         return view('index', compact('advertsData','id'));
     }
 
+    public function viewCategory($categoryID){
+        $advertsData = adverts::query()->where('categoryID', '=', $categoryID)->limit(15)->get();
+        $advertsData = addImageToObj($advertsData);
+        $categories = Categories::all()->toArray();
+        $id = 1;
+        return view('index', compact('advertsData', 'id','categories','categoryID'));
+    }
     public function viewItem($id){
         $advertData = adverts::query()->where('id', '=', $id)->first();
         $category = Categories::query()->where('id', '=', $advertData['categoryID'])->first();
         $advertData['categoryID'] = $category['category'];
         $imageData = PostImage::query()->where('advertID', '=', $id)->get();
-        //dd($imageData);
+
         return view('item', compact('advertData','imageData'));
     }
 
@@ -110,8 +137,14 @@ class ImageUploadController extends Controller
         return view('index', compact('advertsData','id'));
     }
 
-    public function editAdvert(){
-
+    public function editAdvert($id){
+        $advertData = adverts::query()->where('id', '=', $id)->first();
+        if($advertData['userID'] == auth()->user()->id){
+            $categories = Categories::all();
+            return view('add-advert', compact('advertData','categories'));
+        } else{
+            echo "Nemáte přístup k editaci tohoto inzerátu!";
+        }
     }
 
 }

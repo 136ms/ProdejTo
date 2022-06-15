@@ -23,6 +23,11 @@ Route::get('/page/{id}', [ImageUploadController::class,'viewIndexPage'])->name('
 
 Route::get('/item/{id}', [ImageUploadController::class,'viewItem'])->name('ItemPage');
 
+Route::get('/edit/{id}', [ImageUploadController::class,'editAdvert'])->name('editAdvert');
+
+Route::get('/category/{id}', [ImageUploadController::class,'viewCategory'])->name('viewCategory');
+
+
 Route::get('/items', function () {
     return view('items');
 })->name('items');
@@ -55,6 +60,8 @@ Route::get('/add-image',[ImageUploadController::class,'addImage'])->name('images
 Route::post('/store-advert',[ImageUploadController::class,'storeAdvert'])
     ->name('advert.store');
 
+Route::post('/update-advert',[ImageUploadController::class,'updateAdvert'])
+    ->name('advert.update');
 //For showing an search result
 Route::post('/search-advert',[ImageUploadController::class,'viewIndexSearch'])
     ->name('advert.search');

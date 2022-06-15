@@ -1,8 +1,24 @@
 <x-app-layout>
     <div class="p-8">
-        <form class="text-sm text-left text-gray-500 dark:text-gray-400" method="post" enctype="multipart/form-data"
-              action="{{ route('advert.store') }}">
-            @csrf
+        @isset($advertData)
+            @if($advertData == true)
+                <?php $editing = true?>
+                <form class="text-sm text-left text-gray-500 dark:text-gray-400" method="post" enctype="multipart/form-data"
+                      action="{{ route('advert.update') }}">
+                    @csrf
+                    <input type="hidden" name="id" value="{{$advertData['id']}}"/>
+
+
+                    @else
+                        <?php $editing = false?>
+                        <form class="text-sm text-left text-gray-500 dark:text-gray-400" method="post" enctype="multipart/form-data"
+                              action="{{ route('advert.store') }}">
+                            @csrf
+                    @endif
+
+
+                            @endisset
+
             <div class="grid gap-6 grid-cols-2">
                 <div>
                     <label for="name"
@@ -10,14 +26,14 @@
                         produktu</label>
                     <input type="text" id="name"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="Název produktu" name="itemName" required>
+                           placeholder="Název produktu" @if($editing == true) value="{{$advertData['itemName']}}" @endif name="itemName" required>
                 </div>
                 <div>
                     <label for="location"
                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Poloha</label>
                     <input type="text" id="location"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="Poloha" name="location" required>
+                           placeholder="Poloha" @if($editing == true) value="{{$advertData['location']}}" @endif  name="location" required>
                 </div>
                 <div>
                     <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Vybrat
@@ -26,7 +42,11 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600  dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="" disabled selected>Vybrat kategorii</option>
                         @foreach($categories as $category)
+                            @if($editing == true && $category->id == $advertData['categoryID'])
+                                    <option label="{{$category->category}}" value="{{$category->id}}" selected></option>
+                                @else
                             <option label="{{$category->category}}" value="{{$category->id}}"></option>
+                            @endif
                         @endforeach
 
                     </select>
@@ -35,7 +55,7 @@
                     <label for="price" class="block mb-2 font-medium text-gray-900 dark:text-gray-300">Cena</label>
                     <input type="number" id="price"
                            class="bg-gray-50 border border-gray-300 text-sm text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="Cena" name="price" required>
+                           placeholder="Cena" @if($editing == true) value="{{$advertData['price']}}" @endif name="price" required>
                 </div>
             </div>
             <div>
@@ -43,7 +63,7 @@
                        class="block mt-4 text-sm font-medium text-gray-900 dark:text-gray-300">Popis</label>
                 <textarea id="description" rows="2"
                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          placeholder="Popis inzerátu" name="description" required></textarea>
+                          placeholder="Popis inzerátu"  name="description" required>@if($editing == true) {{$advertData['description']}} @endif</textarea>
             </div>
             <div>
                 <label for="images"
@@ -77,7 +97,7 @@
 
             <div class="flex justify-center pt-5">
                 <x-jet-button type="submit" wire:click="$toggle('confirmingUserDeletion')" wire:loading.attr="disabled">
-                    Zveřejnit inzerát
+                    @if($editing == true) Upravit inzerát @else Zveřejnit inzerát @endif
                 </x-jet-button>
             </div>
         </form>
